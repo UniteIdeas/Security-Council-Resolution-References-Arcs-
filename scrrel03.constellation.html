@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<title>Constellation</title>
+		
+		<script src="libs/jquery-1.7.js"></script>
+		<script type="text/javascript" src="libs/jquery-ui-1.8.16.custom.min.js"></script>
+
+		<script type="text/javascript" src="libs/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="libs/jquery.svg.js"></script>
+		
+		<script type="text/javascript" src="constellation.min.js"></script>
+		<script type="text/javascript" src="scrrel03.constellation.js"></script>
+		
+		<script type="text/javascript">
+			var constellation;
+			var config = {
+				id: 'container',
+				graphLoaderClass: SimpleGraphLoader,
+				graphLoader: {
+					url: 'step06_output01.graphml'
+				},
+				graphParserClass: GraphMlParser,
+				graphViewClass: DirectGraphView,
+				layoutClass: StaticLayout,
+			    zoomSlider: {
+			        orientation: 'vertical',
+			        min: 0.1,
+			        max: 1,
+			        value: 0.2,
+			        step: 0.1
+			    }
+			};
+			var styles = [
+				['node', {
+					rendererClass: ScrRel03NodeRenderer
+				}],
+				['edge', {
+					rendererClass: ScrRel03EdgeRenderer
+				}]
+			];
+			
+			$(document).ready(function() {
+				constellation = new Constellation(config, styles);
+				
+				if (window['console']) {
+					$(constellation).bind('log', function(event, type, message) {
+						switch (type) {
+						case 'debug':
+							console.log(message);
+							break;
+						case 'warn':
+							console.warn(message);
+							break;
+						case 'error':
+							console.error(message);
+							break;
+						}
+					});
+				}
+				
+				constellation.init();
+			});
+		</script>
+		
+		<link type="text/css" href="libs/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+		<style type="text/css">@import "libs/jquery.svg.css";</style>
+		<style type="text/css">
+			html,body {
+				height: 100%;
+				margin: 0;
+				overflow: hidden;
+				padding: 0;
+				width: 100%;
+			}
+			#container {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container"></div>
+	</body>
+</html>
+

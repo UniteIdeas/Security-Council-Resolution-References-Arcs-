@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<title>Security Council Resolution References</title>
+		
+		<script src="libs/jquery-1.7.js"></script>
+		<script type="text/javascript" src="libs/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript" src="libs/d3/d3.js"></script>
+		<script type="text/javascript" src="scrrel03.horizontal.js"></script>
+
+		<link rel="stylesheet" href="libs/blueprint/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="libs/blueprint/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]>
+			<link rel="stylesheet" href="libs/blueprint/ie.css" type="text/css" media="screen, projection">
+		<![endif]-->
+		
+		<link type="text/css" href="libs/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body {
+        background: #f0f0f0;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+
+      #wrapper {
+        background: #fff;
+        margin: 0 auto;
+        padding: 15px;
+        width: 850px;
+      }
+
+      h1 {
+        font-size: 2.1em;
+        float: left;
+        width: auto;
+      }
+			
+			#jumpPanel {
+        float: right;
+        width: auto;
+			}
+			
+			#container {
+        clear: both;
+				height: 560px;
+				width: 800px;
+			}
+
+      #container.active {
+				background: url('reference_background.jpg') no-repeat;
+      }
+
+      #container.inactive {
+				background: url('reference_inactive.jpg') no-repeat;
+      }
+
+      #incomingRefPanel {
+        float: right;
+        width: 50%;
+      }
+
+      #incomingRefPanel .refListLabel {
+        color: #f60;
+      }
+
+      #outgoingRefPanel {
+        float: left;
+        width: 50%;
+      }
+
+      #outgoingRefPanel .refListLabel {
+        color: #33f;
+      }
+
+      .refListLabel {
+        width: auto;
+      }
+			
+			ul.refList {
+				margin: 0;
+				min-height: 80px;
+				padding: 0 0 30px 0;
+			}
+			
+			ul.refList li {
+				display: inline-block;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				width: 100px;
+			}
+
+      ul.refList a {
+        color: #777;
+      }
+
+      rect.backing {
+        fill: #ddd;
+      }
+
+      rect.decade {
+        fill: #f9f9f9;
+      }
+
+      text.decade {
+        fill: #999;
+        font-size: 0.8em;
+        text-anchor: middle;
+      }
+
+      line.tick {
+        stroke: #eee;
+      }
+
+      text.tick {
+        fill: #c93;
+        dy: 0.35em;
+        font-size: 0.7em;
+        letter-spacing: 1
+      }
+
+      text.y-axis {
+        font-size: 0.9em;
+        fill: #c93;
+      }
+
+      rect.resolution {
+        fill: #666;
+      }
+
+      text.resLabel {
+        text-anchor: middle;
+      }
+
+      text.resInfo {
+        fill: #888;
+        font-size: 0.9em;
+        text-anchor: middle;
+      }
+
+      rect.hitArea {
+        opacity: 0;
+      }
+
+      #content {
+        background: #fafafa;
+        clear: both;
+        font-size: 1.1em;
+        margin: 0 auto;
+        padding: 40px;
+        width: 500px;
+      }
+
+      #footer {
+        clear: both;
+        color: #444;
+        padding: 20px 0 0 0;
+      }
+
+      #footer p {
+        margin: 0;
+        padding: 0;
+      }
+
+			
+		</style>
+	</head>
+
+	<body>
+    <div id="wrapper">
+
+		  <h1>Security Council Resolution References</h1>
+		
+		  <div id="jumpPanel">
+	  		<label for="jumpInput" style="font-weight:normal">Jump to S/RES/</label>
+  			<input type="text" id="jumpInput" value="1325" style="width:55px" />
+  			<input type="button" id="jumpButton" value="Go" />
+  		</div>
+		
+  		<div id="container"></div>
+	
+      <div id="incomingRefPanel">	
+        <h3 class="refListLabel">Incoming References</h3>
+        <ul id="incomingRefList" class="refList"></ul>
+      </div>
+
+      <div id="outgoingRefPanel">
+        <h3 class="refListLabel">Outgoing References</h3>
+        <ul id="outgoingRefList" class="refList"></ul>
+      </div>
+
+      <div id="content">
+        <h3>About</h3>
+        <p>This data visualization shows how security council resolutions reference each other. The full text data was parsed from PDFs available through the <a href="http://ods.un.org" target="_blank">UN Official Document System</a>.</p>
+
+        <p>Security council resolutions are laid out on a timeline with the first resolution of 1946 on the left. The height of the bar indicates how many incoming references the resolution received. The taller the bar, the more influence the resolution had in future years.</p>
+
+        <p>Each arc represents one or more references from one resolution to another. Clicking on a resolution bar narrows the focus to that resolution. Blue arcs represent outgoing references to resolutions past. Orange arcs represent incoming references from later resolutions.</p>
+        
+        <p>Most of the PDFs for the years prior to 1993 contain images of scanned documents rather than the actual text data so their references could not be read. As a result, the visualization shows far fewer arcs before 1993.</p>
+      </div>
+      
+      <div id="footer">		
+        <p class="small">Data from the United Nations <a href="http://ods.un.org" target="_blank">Official Document System</a>. Missing data: references from scanned documents are omitted.</p>
+      </div>
+    </div>
+  </body>
+</html>
+
